@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <title>microblog</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container">
+          <a href="#" class="navbar-brand">
+            <img src="./logo.png" alt="MicroBlog" />
+          </a>
+          <button
+            class="navbar-toggler"
+            data-bs-target="#navbarNav"
+            data-bs-toggle="collapse"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link active">Home</a>
+              </li>
+              <li class="nav-item"><a href="#" class="nav-link">Review</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <section class="mt-3">
+        <form action="" method="post" class="form">
+          <div>
+            <label for="comment" class="form-label">Comment:</label>
+            <textarea
+              name="comment"
+              id="comment"
+              rows="10"
+              placeholder="Place your commentary here"
+              class="form-control"
+            ></textarea>
+            <input
+              type="submit"
+              name="add"
+              value="add comment"
+              class="btn btn-info my-3 rounded-pill float-end"
+            />
+            <input
+              type="submit"
+              name="delete"
+              value="delete all"
+              class="btn btn-danger my-3 mx-2 rounded-pill float-end"
+            />
+          </div>
+        </form>
+      </section>
+      <section class="d-flex flex-column my-4 w-100">
+        {% if comments %}
+        <h2 class="display-5 mb-3">Recent Comments:</h2>
+        <div class="comment-group p-2">
+          {% for comment in comments %}
+          <div class="comment">
+            <div
+              class="comment-header d-flex flex-row justify-content-start align-items-center gap-4"
+            >
+              <h3>{{comment['title']}}</h3>
+              <time datetime="{{comment['publish_date']}}"
+                >{{comment['formatted_date']}}</time
+              >
+            </div>
+            <p class="text-muted">{{comment['content']}}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <h3>No comments added!</h3>
+        {% endif %}
+      </section>
+    </main>
+    <footer class="bg-dark bg-text-dark w-100 p-5">
+      <div
+        class="d-flex flex-column flex-md-row justify-content-around align-items-center text-capitalize"
+      >
+        <div class="lead text-info text-center text-md-start">
+          all copyrights reserved &copy; <br />
+          <small>
+            this website was built by:
+            <i class="d-inline-block fw-bold mx-2">yahia abderraouf</i>
+          </small>
+        </div>
+        <ul class="nav row row-cols-1 row-cols-md-2 text-center">
+          <li class="nav-item col">
+            <a href="#" class="nav-link link-info">home</a>
+          </li>
+          <li class="nav-item col">
+            <a href="#" class="nav-link link-info">other works</a>
+          </li>
+          <li class="nav-item col">
+            <a href="#" class="nav-link link-info">about this blog</a>
+          </li>
+          <li class="nav-item col">
+            <a href="#" class="nav-link link-info">contact us</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>
